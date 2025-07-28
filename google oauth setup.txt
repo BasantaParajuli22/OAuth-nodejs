@@ -1,0 +1,46 @@
+Google OAuth 2.0 Credentials Setup Guide
+
+This guide details the steps to obtain your Google Client ID and Client Secret, which are essential for enabling Google login in your application.
+
+Steps:
+
+1.  Access Google Cloud Console:
+    Go to the Google Cloud Console: https://console.cloud.google.com/
+
+2.  Select or Create a Project:
+    In the console, either select an existing project or create a new one.
+
+3.  Navigate to APIs & Services -> Credentials:
+    From the left-hand navigation menu, select "APIs & Services", then click on "Credentials".
+
+4.  Create New OAuth Client ID:
+    Click the "CREATE CREDENTIALS" button.
+    From the dropdown menu, select "OAuth client ID".
+
+5.  Configure Application Type:
+    On the next screen, select "Web application" as the Application type.
+
+6.  Provide a Name:
+    Give your OAuth 2.0 client a descriptive name (e.g., "My Node.js OAuth App").
+
+7.  Set Authorized Redirect URIs:
+    Under "Authorized JavaScript origins":
+    Add: http://localhost:5000
+    (If your React frontend runs on a different port, like 3001,
+     you might add that too: http://localhost:3001.)
+
+    Under "Authorized redirect URIs":
+    Add: http://localhost:5000/auth/google/callback
+    (This is the endpoint on your Node.js backend that Google will redirect to after successful authentication.)
+    In production, this would be: https://your-backend-domain.com/auth/google/callback
+
+8.  Obtain Credentials:
+    Click "CREATE".
+    Google will then display your "Client ID" and "Client Secret".
+
+9.  Store Credentials Securely:
+    Copy these values. You will put them into your project's `.env` file:
+    GOOGLE_CLIENT_ID=YOUR_CLIENT_ID
+    GOOGLE_CLIENT_SECRET=YOUR_CLIENT_SECRET
+
+    Remember to keep your `Client Secret` confidential and never expose it in client-side code.
